@@ -1,0 +1,40 @@
+#Python cache files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+#Virtual environment
+venv/
+env/
+#IDE files
+.idea/
+.vscode/
+#Logs*.log
+logs/
+#Data files
+data/
+#Other files
+.DS_Store
+*.bak
+*.tmp
+*.swp
+#Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+#Ignore sensitive files
+config.ini
+credentials.json
+#Ignore build files
+build/
+dist/
+*.egg-info/
+#Ignore coverage reports
+.coverage
+htmlcov/
+#Ignore pytest cache
+.pytest_cache/  
+#Ignore mypy cache
+.mypy_cache/
+#Ignore Sphinx documentation build
+docs/_build/
+# Ignore Environment variables file
+.env
