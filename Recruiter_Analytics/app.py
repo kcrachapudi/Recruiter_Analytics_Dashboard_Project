@@ -10,7 +10,6 @@ st.set_page_config(page_title="Recruiter Analytics Dashboard", layout="wide")
 
 st.title("📊 Recruiter Analytics Dashboard")
 st.caption("Analyze hiring performance, funnel efficiency, and sourcing effectiveness")
-st.markdown("---")
 # -------------------------------
 # LOAD DATA
 # -------------------------------
