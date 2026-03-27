@@ -13,7 +13,7 @@ st.caption("Analyze hiring performance, funnel efficiency, and sourcing effectiv
 # -------------------------------
 # LOAD DATA
 # -------------------------------
-file_path = Path(__file__).parent.parent / "Data" / "recruiter_analytics_dataset_raw.xlsx"
+file_path = Path(__file__).parent / "Data" / "recruiter_analytics_dataset_raw.xlsx"
 df = pd.read_excel(file_path)
 
 # -------------------------------
