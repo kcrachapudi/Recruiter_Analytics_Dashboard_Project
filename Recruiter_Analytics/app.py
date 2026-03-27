@@ -10,7 +10,7 @@ st.set_page_config(page_title="Recruiter Analytics Dashboard", layout="wide")
 
 st.title("📊 Recruiter Analytics Dashboard")
 st.caption("Analyze hiring performance, funnel efficiency, and sourcing effectiveness")
-
+st.markdown("---")
 # -------------------------------
 # LOAD DATA
 # -------------------------------
@@ -44,7 +44,9 @@ st.markdown("---")
 # -------------------------------
 # SIDEBAR FILTERS
 # -------------------------------
-st.sidebar.header("🔍 Filters")
+st.sidebar.markdown("## 🔍 Filters")
+st.sidebar.markdown("Use filters to explore hiring performance")
+st.sidebar.markdown("---")
 
 selected_source = st.sidebar.selectbox(
     "Select Source",
@@ -77,15 +79,17 @@ avg_time_to_hire = df_filtered["Time_to_Hire"].dropna().mean()
 # -------------------------------
 # KPI DISPLAY
 # -------------------------------
-col1, col2, col3, col4 = st.columns(4)
+kpi1, kpi2, kpi3, kpi4 = st.columns(4)
 
-col1.metric("Total Applications", total_applications)
-col2.metric("Total Hires", total_hired)
-col3.metric("Hire Rate", f"{hire_rate:.2%}")
-col4.metric("Avg Time to Hire", f"{avg_time_to_hire:.1f} days" if pd.notna(avg_time_to_hire) else "N/A")
+kpi1.metric("Total Applications", total_applications)
+kpi2.metric("Total Hires", total_hired)
+kpi3.metric("Hire Rate", f"{hire_rate:.2%}")
+kpi4.metric(
+    "Avg Time to Hire",
+    f"{avg_time_to_hire:.1f} days" if pd.notna(avg_time_to_hire) else "N/A"
+)
 
 st.markdown("---")
-
 # -------------------------------
 # FUNNEL
 # -------------------------------
@@ -127,7 +131,7 @@ source_perf["Cost_per_Hire"] = source_perf.apply(
     if row["Total_Hires"] > 0 else None,
     axis=1
 )
-
+source_perf = source_perf.sort_values("Total_Hires", ascending=False)
 # -------------------------------
 # RECRUITER PERFORMANCE
 # -------------------------------
@@ -142,7 +146,7 @@ recruiter_perf = df_filtered.groupby("Recruiter_Name").agg(
 recruiter_perf["Hire_Rate"] = (
     recruiter_perf["Total_Hires"] / recruiter_perf["Total_Candidates"]
 )
-
+recruiter_perf = recruiter_perf.sort_values("Total_Hires", ascending=False)
 # -------------------------------
 # CHARTS (SIDE BY SIDE)
 # -------------------------------
@@ -199,11 +203,12 @@ st.markdown("---")
 # -------------------------------
 # INSIGHTS SECTION
 # -------------------------------
+st.markdown("---")
 st.subheader("📌 Key Insights")
 
 st.markdown("""
-- Referral sources typically show higher conversion efficiency  
-- High-volume sources may not always translate to higher hires  
-- Interview stage represents the largest drop-off in the funnel  
-- Recruiter performance varies across both speed and hiring efficiency  
+- Referrals tend to convert at higher rates compared to other sources  
+- High-volume channels may not yield the highest hiring efficiency  
+- Interview stage shows the largest candidate drop-off  
+- Recruiter performance varies across both speed and conversion effectiveness  
 """)
